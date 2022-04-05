@@ -1,26 +1,62 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import Photo from './components/Photo';
+import Results from './components/Results'
+import Nav from './components/Nav';
+import Search from './components/Search';
+// import NotFound from './components/NotFound';
+import config from './config';
+import {
+  BrowserRouter
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const apiKey = config;
+
+class App extends Component {
+
+  state = {
+    results: []
+  }
+
+  componentDidMount() {
+    this.performSearch();
+  }
+
+  performSearch (tags = 'cats') {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({
+          results: responseData.photos.photo
+        });
+      })
+      .catch(error => {
+        console.log('Error Fetching & Parsing Data from Flickr', error)
+      })
+  }
+
+  render() {
+    console.log(this.state.results);
+    return (
+    <BrowserRouter>
+      <div className="container">
+        <Search 
+
+        />
+        <Nav 
+          dogUrl= "placeHolder"
+          catUrl= "placeHolder"
+          computersUrl = "placeHolder"
+        />
+       
+        <Results 
+          data={this.state.results}
+          apiKey={apiKey}
+        />
+        {/* <NotFound /> */}
+      </div>
+    </BrowserRouter>
+    )
+  }
 }
 
 export default App;

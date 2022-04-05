@@ -6,7 +6,6 @@ const Photo = (props) => {
 
     return (
         <div className="photo-container">
-            <h2>Results</h2>
                 <ul>
                     <li>
                         <img src={`https://www.flickr.com/photos/${ownerId}/${photoId}`} alt={props.alt}/>

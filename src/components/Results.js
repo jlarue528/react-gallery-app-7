@@ -24,9 +24,7 @@ const Results = (props) => {
         <div className="photo-container">
         <h2>Results</h2>
         <ul>
-            <li>
                {photos}
-            </li>
         </ul>
         </div>
     );

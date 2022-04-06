@@ -3,10 +3,10 @@ import './App.css';
 import Results from './components/Results'
 import Nav from './components/Nav';
 import Search from './components/Search';
-// import NotFound from './components/NotFound';
 import config from './config';
 import {
-  BrowserRouter
+  BrowserRouter,
+  Route
 } from 'react-router-dom';
 
 const apiKey = config;
@@ -53,6 +53,7 @@ class App extends Component {
           apiKey={apiKey}
         />
         {/* <NotFound /> */}
+        <Route path="/search" component={Search}/>
       </div>
     </BrowserRouter>
     )

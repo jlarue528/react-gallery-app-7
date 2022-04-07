@@ -17,11 +17,11 @@ class App extends Component {
     results: []
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.performSearch();
   }
 
-  performSearch (tags = 'cats') {
+  performSearch = (tags = 'cats') => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
@@ -40,20 +40,20 @@ class App extends Component {
     <BrowserRouter>
       <div className="container">
         <Search 
-
+            onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= "placeHolder"
+          dogUrl= {"placeHolder"}
           catUrl= "placeHolder"
           computersUrl = "placeHolder"
+          navSearch = {this.performSearch}
         />
        
         <Results 
           data={this.state.results}
           apiKey={apiKey}
         />
-        {/* <NotFound /> */}
-        <Route path="/search" component={Search}/>
+        
       </div>
     </BrowserRouter>
     )

@@ -1,14 +1,15 @@
 import React from 'react';
 
 const Photo = (props) => {
-    let ownerId = props.ownerId;
-    let photoId = props.photoId
+    let photoId = props.photoId;
+    let serverId = props.serverId;
+    let secret = props.secretId;
 
     return (
         <div className="photo-container">
                 <ul>
                     <li>
-                        <img src={`https://www.flickr.com/photos/${ownerId}/${photoId}`} alt={props.alt}/>
+                        <img src={`https://live.staticflickr.com/${serverId}/${photoId}_${secret}_w.jpg`} alt={props.alt}/>
                     </li>
                 </ul> 
         </div>

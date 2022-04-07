@@ -9,11 +9,11 @@ const Results = (props) => {
     if(results.length > 0) {
         photos = results.map(photo => 
             <Photo 
-                ownerId={photo.owner}
                 photoId={photo.id}
                 key={photo.secret}
                 alt={photo.title}
-                apiKey={props.apiKey}
+                secretId={photo.secret}
+                serverId={photo.server}
             />
         )
     } else {

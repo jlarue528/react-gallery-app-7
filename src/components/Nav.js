@@ -7,9 +7,9 @@ const Nav = (props) => {
         <BrowserRouter>
             <nav className = "main-nav">
                 <ul>
-                    <li><NavLink to="/search=cats">Cats</NavLink></li>
-                    <li><NavLink to="/search=dogs">Dogs</NavLink></li>
-                    <li><NavLink to="/search=computers">Computers</NavLink></li>
+                    <li><NavLink to={props.catUrl}>Cats</NavLink></li>
+                    <li><NavLink to={props.dogUrl}>Dogs</NavLink></li>
+                    <li><NavLink to={props.computersUrl}>Computers</NavLink></li>
                 </ul>
         </nav>
 

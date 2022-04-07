@@ -43,9 +43,9 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= {"placeHolder"}
-          catUrl= "placeHolder"
-          computersUrl = "placeHolder"
+          dogUrl= "/search=dogs"
+          catUrl= "/search=cats"
+          computersUrl = "/search=computers"
           navSearch = {this.performSearch}
         />
        
@@ -53,7 +53,7 @@ class App extends Component {
           data={this.state.results}
           apiKey={apiKey}
         />
-        
+
       </div>
     </BrowserRouter>
     )

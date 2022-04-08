@@ -16,19 +16,21 @@ const apiKey = config;
 class App extends Component {
 
   state = {
-    results: []
+    results: [],
+    loading: true
   }
 
   componentDidMount () {
     this.performSearch();
   }
 
-  performSearch = (tags = 'cats') => {
+  performSearch = (tags = "ocean") => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({
-          results: responseData.photos.photo
+          results: responseData.photos.photo,
+          loading: false
         });
       })
       .catch(error => {
@@ -50,16 +52,21 @@ class App extends Component {
           computersUrl = "/computers"
         />
        
-        <Results 
-          data={this.state.results}
-        />
+        {
+          (this.state.loading)
+          ? <p>Loading..</p>
+          :  <Results data={this.state.results}/>
+        }
+
       </div>
 
       <Switch>
+        <Route exact path="/" render={() => {this.performSearch("sunsets")}}/>
         <Route path="/cats" render={() => {this.performSearch("cats")}}/>
         <Route path="/dogs" render={() => {this.performSearch("dogs")}}/>
         <Route path="/computers" render={() => {this.performSearch("computers")}}/>
-        <Route component={NotFound}/>
+        <Route path="/search" render={() => {this.performSearch()}}/>
+        {/* <Route component={NotFound}/> */}
       </Switch>
     </BrowserRouter>
     )

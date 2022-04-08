@@ -38,6 +38,22 @@ class App extends Component {
       })
   }
 
+  sunsetSearch () {
+    return this.performSearch("sunsets");
+  }
+
+  catSearch () {
+    return this.performSearch("cats");
+  }
+
+  dogSearch () {
+    return this.performSearch("dogs")
+  }
+
+  computerSearch = () => {
+    return this.performSearch("computer")
+  }
+
   render() {
     console.log(this.state.results);
     return (
@@ -47,9 +63,9 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= "/dogs"
-          catUrl= "/cats"
-          computersUrl = "/computers"
+          dogUrl= "/search/dogs"
+          catUrl= "/search/cats"
+          computersUrl = "/search/computers"
         />
        
         {
@@ -61,12 +77,11 @@ class App extends Component {
       </div>
 
       <Switch>
-        <Route exact path="/" render={() => {this.performSearch("sunsets")}}/>
-        <Route path="/cats" render={() => {this.performSearch("cats")}}/>
-        <Route path="/dogs" render={() => {this.performSearch("dogs")}}/>
-        <Route path="/computers" render={() => {this.performSearch("computers")}}/>
-        <Route path="/search" render={() => {this.performSearch()}}/>
-        {/* <Route component={NotFound}/> */}
+        <Route exact path="/" render={() => <Results data={this.sunsetSearch}/>}/>
+        <Route path="/search/cats" render={() => <Results data={this.catSearch}/>}/>
+        <Route path="/search/dogs" render={() => <Results data={this.dogSearch}/>}/>
+        <Route path="/search/:searchQuery" render={() => <Results urlQuery={true}/>}/>
+        <Route path="/search/computers" render={() => <Results data={this.computerSearch}/>}/>
       </Switch>
     </BrowserRouter>
     )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class Search extends Component {
+    // let queryParam = this.match.params.searchQuery;
 
     state = {
         searchText: ''
@@ -14,7 +15,10 @@ class Search extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.onSearch(this.query.value);
+        let searchQueryValue = this.query.value;
+        this.props.onSearch(searchQueryValue);
+        let path = `/search/${searchQueryValue}`
+        this.history.push(path);
         e.currentTarget.reset();
     }
 

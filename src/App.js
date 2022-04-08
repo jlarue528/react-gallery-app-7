@@ -6,8 +6,10 @@ import Search from './components/Search';
 import config from './config';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
+import NotFound from './components/NotFound';
 
 const apiKey = config;
 
@@ -43,18 +45,22 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= "/search=dogs"
-          catUrl= "/search=cats"
-          computersUrl = "/search=computers"
-          navSearch = {this.performSearch}
+          dogUrl= "/dogs"
+          catUrl= "/cats"
+          computersUrl = "/computers"
         />
        
         <Results 
           data={this.state.results}
-          apiKey={apiKey}
         />
-
       </div>
+
+      <Switch>
+        <Route path="/cats" render={() => {this.performSearch("cats")}}/>
+        <Route path="/dogs" render={() => {this.performSearch("dogs")}}/>
+        <Route path="/computers" render={() => {this.performSearch("computers")}}/>
+        <Route component={NotFound}/>
+      </Switch>
     </BrowserRouter>
     )
   }

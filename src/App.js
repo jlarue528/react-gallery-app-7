@@ -63,9 +63,9 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= "/search/dogs"
-          catUrl= "/search/cats"
-          computersUrl = "/search/computers"
+          dogUrl= {this.dogSearch.bind(this)}
+          catUrl= {this.catSearch.bind(this)}
+          computersUrl = {this.computerSearch.bind(this)}
         />
        
         {
@@ -77,11 +77,11 @@ class App extends Component {
       </div>
 
       <Switch>
+        <Route path="/search/computers" render={() => <Results data={this.computerSearch}/>}/>
         <Route exact path="/" render={() => <Results data={this.sunsetSearch}/>}/>
         <Route path="/search/cats" render={() => <Results data={this.catSearch}/>}/>
         <Route path="/search/dogs" render={() => <Results data={this.dogSearch}/>}/>
         <Route path="/search/:searchQuery" render={() => <Results urlQuery={true}/>}/>
-        <Route path="/search/computers" render={() => <Results data={this.computerSearch}/>}/>
       </Switch>
     </BrowserRouter>
     )

@@ -3,7 +3,7 @@ import './App.css';
 import Results from './components/Results'
 import Nav from './components/Nav';
 import Search from './components/Search';
-import config from './config';
+import config from './config/config.js';
 import {
   BrowserRouter,
   Route,

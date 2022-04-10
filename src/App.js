@@ -21,6 +21,7 @@ class App extends Component {
 
   componentDidMount () {
     this.performSearch();
+    console.log(this.state.results);
   }
 
   performSearch = (tags = "ocean") => {
@@ -29,7 +30,6 @@ class App extends Component {
       .then(responseData => {
         this.setState({
           results: responseData.photos.photo,
-          loading: false
         });
       })
       .catch(error => {
@@ -61,9 +61,9 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-          dogUrl= {this.dogSearch.bind(this)}
-          catUrl= {this.catSearch.bind(this)}
-          computersUrl = {this.computerSearch.bind(this)}
+          dogUrl= {this.dogSearch}
+          catUrl= {this.catSearch}
+          computersUrl = {this.computerSearch}
         />
       </div>
 

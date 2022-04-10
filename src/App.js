@@ -21,7 +21,6 @@ class App extends Component {
 
   componentDidMount () {
     this.performSearch();
-    console.log(this.state.results);
   }
 
   performSearch = (tags = "ocean") => {

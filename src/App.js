@@ -17,15 +17,17 @@ const apiKey = config;
 class App extends Component {
 
   state = {
-    results: []
+    results: [],
+    cats: [],
+    dogs: [],
+    computers: []
   }
 
   componentDidMount () {
+    this.catSearch();
+    this.dogSearch();
+    this.computerSearch();
     this.performSearch();
-  }
-
-  componentDidUpdate (prevState) {
-    console.log('update', prevState);
   }
 
   performSearch = (tags = "ocean") => {
@@ -42,15 +44,24 @@ class App extends Component {
   }
 
   catSearch = () => {
-   return this.performSearch("cats")
+    let catImages = this.performSearch("cats")
+    this.setState({
+      cats: catImages
+    });
   }
 
   dogSearch = () => {
-    return this.performSearch("dogs")
+    let dogImages = this.performSearch("dogs")
+    this.setState({
+      dogs: dogImages
+    });
   }
 
-  computersSearch = () => {
-    return this.performSearch("computers");
+  computerSearch = () => {
+    let computerImages = this.performSearch("computers")
+    this.setState({
+      computers: computerImages
+    });
   }
 
   render() {
@@ -61,18 +72,18 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav 
-            catSearch = {this.catSearch.bind(this)}
-            dogSearch = {this.dogSearch.bind(this)}
-            computerSearch = {this.computersSearch.bind(this)}
+            // catSearch = {this.catSearch.bind(this)}
+            // dogSearch = {this.dogSearch.bind(this)}
+            // computerSearch = {this.computersSearch.bind(this)}
         />
       </div>
 
       <Switch>
         <Route exact path="/" render={() => <Results data={this.state.results}/>}/>
-        <Route path="/cats" render={() => <Results data={this.state.results}/>}/>
+        <Route path="/cats" render={() => <Results data={this.state.cats}/>}/>
         <Route path="/search" render={() => <Redirect to="/"/>}/>
-        <Route path="/dogs" render={() => <Results data={this.state.results}/>}/>
-        <Route path="/computers" render={() => <Results data={this.state.results}/>}/>
+        <Route path="/dogs" render={() => <Results data={this.state.dogs}/>}/>
+        <Route path="/computers" render={() => <Results data={this.state.computers}/>}/>
         <Route path="/:searchQuery" render={() => <Results data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-    createBrowserHistory
-  } from 'history'
+import { withRouter } from "react-router";
 
 class Search extends Component {
     
@@ -19,9 +17,9 @@ class Search extends Component {
         e.preventDefault();
         let searchQueryValue = this.query.value;
         this.props.onSearch(searchQueryValue);
-        let path = `/search/${searchQueryValue}`;
-        let history = createBrowserHistory();
-        history.push(path);
+        let path = `/${searchQueryValue}`;
+        this.props.history.push(path);
+        console.log(this.props.match);
         e.currentTarget.reset();
     }
 
@@ -46,4 +44,4 @@ class Search extends Component {
     }
 }
 
-export default Search;
+export default withRouter(Search);

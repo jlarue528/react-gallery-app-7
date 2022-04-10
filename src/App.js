@@ -38,23 +38,22 @@ class App extends Component {
   }
 
   sunsetSearch = () => {
-    return this.performSearch("sunsets")
+    return this.performSearch("sunsets");
   }
 
   catSearch = () => {
-    return this.performSearch("cats")
+    return this.performSearch("cats");
   }
 
   dogSearch = () => {
-    return this.performSearch("dogs")
+    return this.performSearch("dogs");
   }
 
   computerSearch = () => {
-    return this.performSearch("computer")
+    return this.performSearch("computers");
   }
 
   render() {
-    console.log(this.state.results);
     return (
     <BrowserRouter>
       <div className="container">
@@ -69,7 +68,7 @@ class App extends Component {
       </div>
 
       <Switch>
-        <Route exact path="/" render={() => <Results data={this.sunsetSearch}/>}/>
+        <Route exact path="/" render={() => <Results data={this.state.results}/>}/>
         <Route path="/search/:searchQuery" render={() => <Results data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>

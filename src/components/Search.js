@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    createBrowserHistory
+  } from 'history'
 
 class Search extends Component {
     
@@ -17,7 +20,8 @@ class Search extends Component {
         let searchQueryValue = this.query.value;
         this.props.onSearch(searchQueryValue);
         let path = `/search/${searchQueryValue}`;
-        this.props.history.push(path)
+        let history = createBrowserHistory();
+        history.push(path);
         e.currentTarget.reset();
     }
 

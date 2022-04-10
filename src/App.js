@@ -16,8 +16,7 @@ const apiKey = config;
 class App extends Component {
 
   state = {
-    results: [],
-    loading: true
+    results: []
   }
 
   componentDidMount () {
@@ -38,24 +37,20 @@ class App extends Component {
       })
   }
 
-  sunsetSearch () {
-    return this.performSearch("sunsets");
+  sunsetSearch = () => {
+    return this.performSearch("sunsets")
   }
 
-  catSearch () {
-    return this.performSearch("cats");
+  catSearch = () => {
+    return this.performSearch("cats")
   }
 
-  dogSearch () {
+  dogSearch = () => {
     return this.performSearch("dogs")
   }
 
   computerSearch = () => {
     return this.performSearch("computer")
-  }
-
-  userDefinedSearch = (searchTerm) => {
-    return this.performSearch(searchTerm)
   }
 
   render() {
@@ -71,21 +66,11 @@ class App extends Component {
           catUrl= {this.catSearch.bind(this)}
           computersUrl = {this.computerSearch.bind(this)}
         />
-       
-        {
-          (this.state.loading)
-          ? <p>Loading..</p>
-          :  <Results data={this.state.results}/>
-        }
-
       </div>
 
       <Switch>
-        <Route path="/search/computers" render={() => <Results data={this.computerSearch}/>}/>
         <Route exact path="/" render={() => <Results data={this.sunsetSearch}/>}/>
-        <Route path="/search/cats" render={() => <Results data={this.catSearch}/>}/>
-        <Route path="/search/dogs" render={() => <Results data={this.dogSearch}/>}/>
-        <Route path="/search/:searchQuery" render={() => <Results data={this.userDefinedSearch}/>}/>
+        <Route path="/search/:searchQuery" render={() => <Results data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>
     </BrowserRouter>

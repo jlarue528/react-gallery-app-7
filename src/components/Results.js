@@ -6,6 +6,7 @@ const Results = (props) => {
 
     const results = props.data;
     let photos;
+    console.log(results);
     if(results.length > 0) {
         photos = results.map(photo => 
             <Photo 
@@ -23,9 +24,9 @@ const Results = (props) => {
     return (
         <div className="photo-container">
         <h2>Results</h2>
-        <ul>
-               {photos}
-        </ul>
+            <ul>
+                {photos}
+            </ul>
         </div>
     );
 }

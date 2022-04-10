@@ -24,10 +24,10 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.catSearch();
-    this.dogSearch();
-    this.computerSearch();
     this.performSearch();
+    this.catNavItemSearch();
+    this.dogNavItemSearch();
+    this.computerNavItemSearch();
   }
 
   performSearch = (tags = "ocean") => {
@@ -36,32 +36,50 @@ class App extends Component {
       .then(responseData => {
         this.setState({
           results: responseData.photos.photo
-        });
+        })
       })
       .catch(error => {
         console.log('Error Fetching & Parsing Data from Flickr', error)
       })
   }
 
-  catSearch = () => {
-    let catImages = this.performSearch("cats")
-    this.setState({
-      cats: catImages
-    });
+  catNavItemSearch = (tags = "cats") => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({
+          cats: responseData.photos.photo
+        })
+      })
+      .catch(error => {
+        console.log('Error Fetching & Parsing Data from Flickr', error)
+      })
   }
 
-  dogSearch = () => {
-    let dogImages = this.performSearch("dogs")
-    this.setState({
-      dogs: dogImages
-    });
+  dogNavItemSearch = (tags = "dogs") => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({
+          dogs: responseData.photos.photo
+        })
+      })
+      .catch(error => {
+        console.log('Error Fetching & Parsing Data from Flickr', error)
+      })
   }
 
-  computerSearch = () => {
-    let computerImages = this.performSearch("computers")
-    this.setState({
-      computers: computerImages
-    });
+  computerNavItemSearch = (tags = "computers") => {
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({
+          computers: responseData.photos.photo
+        })
+      })
+      .catch(error => {
+        console.log('Error Fetching & Parsing Data from Flickr', error)
+      })
   }
 
   render() {
@@ -71,11 +89,7 @@ class App extends Component {
         <Search 
             onSearch = {this.performSearch}
         />
-        <Nav 
-            // catSearch = {this.catSearch.bind(this)}
-            // dogSearch = {this.dogSearch.bind(this)}
-            // computerSearch = {this.computersSearch.bind(this)}
-        />
+        <Nav />
       </div>
 
       <Switch>

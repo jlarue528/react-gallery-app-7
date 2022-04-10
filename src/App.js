@@ -54,6 +54,10 @@ class App extends Component {
     return this.performSearch("computer")
   }
 
+  userDefinedSearch = (searchTerm) => {
+    return this.performSearch(searchTerm)
+  }
+
   render() {
     console.log(this.state.results);
     return (
@@ -81,7 +85,8 @@ class App extends Component {
         <Route exact path="/" render={() => <Results data={this.sunsetSearch}/>}/>
         <Route path="/search/cats" render={() => <Results data={this.catSearch}/>}/>
         <Route path="/search/dogs" render={() => <Results data={this.dogSearch}/>}/>
-        <Route path="/search/:searchQuery" render={() => <Results urlQuery={true}/>}/>
+        <Route path="/search/:searchQuery" render={() => <Results data={this.userDefinedSearch}/>}/>
+        <Route component={NotFound}/>
       </Switch>
     </BrowserRouter>
     )

@@ -103,7 +103,7 @@ class App extends Component {
         <Route path="/search" render={() => <Redirect to="/"/>}/>
         <Route path="/dogs" render={() => <Results data={this.state.dogs}/>}/>
         <Route path="/computers" render={() => <Results data={this.state.computers}/>}/>
-        <Route path="/:searchQuery" render={() => <Results data={this.state.results}/>}/>
+        <Route path="/:searchQuery" render={() => <Results reRunSearch={this.performSearch} data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>
     </BrowserRouter>

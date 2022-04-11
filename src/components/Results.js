@@ -2,9 +2,9 @@ import React from 'react';
 import Photo from './Photo';
 import NotFound from './NotFound';
 
-const Results = (props) => {
+const Results = (props)  => {
 
-    const results = props.data;
+    const results = props.data
     let photos;
     if(results.length > 0) {
         photos = results.map(photo => 
@@ -27,7 +27,6 @@ const Results = (props) => {
                 {photos}
             </ul>
         </div>
-    );
-}
+    )};
 
 export default Results;

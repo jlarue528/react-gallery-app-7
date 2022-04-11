@@ -32,8 +32,11 @@ class App extends Component {
   }
 
   componentDidUpdate (prevState) {
-    console.log('current props', this.props.history)
-    console.log('prev props', prevState)
+    console.log('new', this.props)
+    console.log('prevState', prevState)
+    // if(!prevState.match.isExact) {
+    //   this.performSearch(this.)
+    // }
   }
  
   performSearch = (tags = "ocean") => {
@@ -41,7 +44,7 @@ class App extends Component {
       .then(response => response.json())
       .then(responseData => {
         this.setState({
-            results: responseData.photos.photo
+            results: responseData.photos.photo,
         })
       })
       .catch(error => {
@@ -89,6 +92,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
     <BrowserRouter>
       <div className="container">
@@ -104,7 +108,7 @@ class App extends Component {
         <Route path="/search" render={() => <Redirect to="/"/>}/>
         <Route path="/dogs" render={() => <Results data={this.state.dogs}/>}/>
         <Route path="/computers" render={() => <Results data={this.state.computers}/>}/>
-        <Route path="/:searchQuery" render={() => <Results reRunSearch={this.performSearch} data={this.state.results}/>}/>
+        <Route path="/:searchQuery" render={({match}) => <Results data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>
     </BrowserRouter>

@@ -19,6 +19,8 @@ class Search extends Component {
         this.props.onSearch(searchQueryValue);
         let path = `${searchQueryValue}`;
         this.props.history.push(path);
+        console.log('inHandle', this.props)
+        console.log('matching', this.props.match);
         e.currentTarget.reset();
     }
 

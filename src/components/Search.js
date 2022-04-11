@@ -17,7 +17,7 @@ class Search extends Component {
         e.preventDefault();
         let searchQueryValue = this.query.value;
         this.props.onSearch(searchQueryValue);
-        let path = `/${searchQueryValue}`;
+        let path = `${searchQueryValue}`;
         this.props.history.push(path);
         e.currentTarget.reset();
     }

@@ -30,12 +30,17 @@ class App extends Component {
     this.computerNavItemSearch();
   }
 
+  componentDidUpdate (prevProps) {
+    console.log(this.props)
+    console.log(prevProps)
+  }
+ 
   performSearch = (tags = "ocean") => {
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({
-          results: responseData.photos.photo
+            results: responseData.photos.photo
         })
       })
       .catch(error => {

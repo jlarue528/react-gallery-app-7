@@ -11,6 +11,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import NotFound from './components/NotFound';
+import { withRouter } from "react-router";
 
 const apiKey = config;
 
@@ -30,9 +31,9 @@ class App extends Component {
     this.computerNavItemSearch();
   }
 
-  componentDidUpdate (prevProps) {
-    console.log('current props', this.props)
-    console.log('prev props', prevProps)
+  componentDidUpdate (prevState) {
+    console.log('current props', this.props.history)
+    console.log('prev props', prevState)
   }
  
   performSearch = (tags = "ocean") => {
@@ -111,4 +112,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

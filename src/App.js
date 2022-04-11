@@ -31,12 +31,9 @@ class App extends Component {
     this.computerNavItemSearch();
   }
 
-  componentDidUpdate (prevState) {
-    console.log('new', this.props)
-    console.log('prevState', prevState)
-    // if(!prevState.match.isExact) {
-    //   this.performSearch(this.)
-    // }
+  componentDidUpdate (prevProps) {
+    console.log('new', this.props.location.pathname)
+    console.log('prevState', prevProps.location.pathname)
   }
  
   performSearch = (tags = "ocean") => {

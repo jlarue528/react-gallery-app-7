@@ -31,8 +31,8 @@ class App extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    console.log(this.props)
-    console.log(prevProps)
+    console.log('current props', this.props)
+    console.log('prev props', prevProps)
   }
  
   performSearch = (tags = "ocean") => {

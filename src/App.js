@@ -90,7 +90,7 @@ class App extends Component {
             onSearch = {this.performSearch}
         />
         <Nav />
-      </div>
+     
 
       <Switch>
         <Route exact path="/" render={() => <Results data={this.state.results}/>}/>
@@ -101,7 +101,8 @@ class App extends Component {
         <Route path="/:searchQuery" render={({match}) => <Results data={this.state.results}/>}/>
         <Route component={NotFound}/>
       </Switch>
-    </BrowserRouter>
+      </div>
+     </BrowserRouter>
     )
   }
 }
